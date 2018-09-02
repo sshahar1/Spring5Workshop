@@ -6,8 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by sigals on 10/03/2018.
@@ -15,19 +18,23 @@ import java.util.List;
 @Service
 public class PersonService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(PersonService.class);
+    private final PersonRepository personRepository;
 
     @Autowired
-    private PersonRepository personRepository;
+    public PersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
 
-    public void storePersons(List<Person> persons) {
-        persons
-                .forEach(p -> {
-                            LOG.info("Storing person {}", p);
+    public Flux<Person> storePersonsFlux(List<Person> persons) {
 
-                            personRepository.save(p);
-                            LOG.info("Person {} stored", p);
-                        }
-                );
+        return personRepository.saveAll(persons);
+    }
+
+    public Flux<Person> storePersonsMono(List<Person> persons) {
+        return Flux.concat(
+                persons
+                .stream()
+                .map(personRepository::save)
+                .collect(Collectors.toList()));
     }
 }
