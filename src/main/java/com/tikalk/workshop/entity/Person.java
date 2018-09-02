@@ -1,24 +1,21 @@
 package com.tikalk.workshop.entity;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
 /**
  * Person table entity
  * Created by sigals on 03/03/2018.
  */
-@Entity
-@Table(name="person")
+@Document(collection = "persons")
 public class Person {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "givenName", nullable = false)
     private String givenName;
 
-    @Column(name = "sureName")
     private String sureName;
 
     public Person() {
