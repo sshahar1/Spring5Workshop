@@ -1,6 +1,8 @@
 # Spring5Workshop
-Spring 5 workshop for Tikal
 
-You have a reactive service to save Persons to the database [PersonService](src/main/java/com/tikalk/workshop/service/PersonService.java), what is the difference between:
+This branch includes a reactive REST controller to store and retrieve person's imformation.
+
+1. What makes this application reactive?
+2. You have a reactive service to save Persons to the database [PersonService](src/main/java/com/tikalk/workshop/service/PersonService.java), what is the difference between?
 * storePersonsFlux
 * storePersonsMono
