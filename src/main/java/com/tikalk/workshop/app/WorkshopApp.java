@@ -1,10 +1,11 @@
 package com.tikalk.workshop.app;
 
+import com.mongodb.MongoClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
 /**
@@ -13,12 +14,17 @@ import org.springframework.web.reactive.config.EnableWebFlux;
  */
 @SpringBootApplication
 @ComponentScan({"com.tikalk.workshop.controller", "com.tikalk.workshop.service"})
-@EnableJpaRepositories("com.tikalk.workshop.repository")
-@EntityScan("com.tikalk.workshop.entity")
+@EnableReactiveMongoRepositories(basePackages = "com.tikalk.workshop.repository")
 @EnableWebFlux
 public class WorkshopApp {
 
     public static void main(String[] args) {
         SpringApplication.run(WorkshopApp.class, args);
+    }
+
+    @Bean
+    public MongoClient mongoClient() {
+        // connect to embedded mongodb
+        return new MongoClient();
     }
 }
