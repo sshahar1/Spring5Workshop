@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
+ * Reactive REST controller for persons
  * Created by sigals on 03/03/2018.
  */
 @RestController
