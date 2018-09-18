@@ -35,4 +35,8 @@ public class PersonService {
                 .map(personRepository::save)
                 .collect(Collectors.toList()));
     }
+
+    public Flux<Person> getAll() {
+        return personRepository.findAll();
+    }
 }
