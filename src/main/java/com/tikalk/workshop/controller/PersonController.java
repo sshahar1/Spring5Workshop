@@ -17,7 +17,7 @@ import java.util.List;
  * Created by sigals on 03/03/2018.
  */
 @RestController
-@RequestMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PersonController {
 
     private final static Logger LOG = LoggerFactory.getLogger(PersonController.class);
@@ -29,7 +29,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Flux<Person> postPersons(@Valid @RequestBody Flux<Person> persons) {
         LOG.info("Received request");
         Flux<Person> created = personService.storePersonsFlux(persons);
