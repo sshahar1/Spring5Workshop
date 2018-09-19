@@ -30,7 +30,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public Flux<Person> postPersons(@Valid @RequestBody List<Person> persons) {
+    public Flux<Person> postPersons(@Valid @RequestBody Flux<Person> persons) {
         LOG.info("Received request");
         Flux<Person> created = personService.storePersonsFlux(persons);
         LOG.info("Request processed");
