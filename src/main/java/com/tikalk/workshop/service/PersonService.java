@@ -23,7 +23,7 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public Flux<Person> storePersonsFlux(List<Person> persons) {
+    public Flux<Person> storePersonsFlux(Flux<Person> persons) {
 
         return personRepository.saveAll(persons);
     }
