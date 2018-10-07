@@ -1,4 +1,4 @@
-package com.tikalk.workshop.client;
+package com.tikalk.workshop.test;
 
 import com.tikalk.workshop.controller.PersonController;
 import com.tikalk.workshop.entity.Person;
