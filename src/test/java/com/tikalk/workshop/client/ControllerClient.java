@@ -10,6 +10,7 @@ import reactor.util.function.Tuple2;
 
 import java.net.URISyntaxException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -37,8 +38,12 @@ public class ControllerClient {
     }
 
     private static Flux<Person> getPayload() {
-        return Flux.just(new Person("first " + random.nextInt(1000), "last " + random.nextInt(1000)))
-                .zipWith(Flux.interval(Duration.ofSeconds(10)))
-                .map(Tuple2::getT1);
+
+        return Flux.interval(Duration.ofSeconds(5))
+                .zipWithIterable(Arrays.asList(1,2,3))
+                .map(source -> {
+                    Integer t2 = source.getT2();
+                    return new Person("first " + t2, "last " + t2);
+                });
     }
 }
