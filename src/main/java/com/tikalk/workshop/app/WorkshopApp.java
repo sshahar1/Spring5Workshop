@@ -2,7 +2,9 @@ package com.tikalk.workshop.app;
 
 import com.mongodb.MongoClient;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
@@ -20,11 +22,5 @@ public class WorkshopApp {
 
     public static void main(String[] args) {
         SpringApplication.run(WorkshopApp.class, args);
-    }
-
-    @Bean
-    public MongoClient mongoClient() {
-        // connect to embedded mongodb
-        return new MongoClient();
     }
 }
