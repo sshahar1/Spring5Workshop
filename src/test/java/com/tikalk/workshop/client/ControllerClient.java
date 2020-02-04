@@ -39,11 +39,8 @@ public class ControllerClient {
 
     private static Flux<Person> getPayload() {
 
-        return Flux.interval(Duration.ofSeconds(5))
-                .zipWithIterable(Arrays.asList(1,2,3))
-                .map(source -> {
-                    Integer t2 = source.getT2();
-                    return new Person("first " + t2, "last " + t2);
-                });
+        return Flux.interval(Duration.ofSeconds(10))
+                .take(3)
+                .map(index -> new Person("first " + index, "last " + index));
     }
 }
