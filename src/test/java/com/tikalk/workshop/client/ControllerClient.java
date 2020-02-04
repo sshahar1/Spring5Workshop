@@ -39,8 +39,8 @@ public class ControllerClient {
 
     private static Flux<Person> getPayload() {
 
-        return Flux.interval(Duration.ofSeconds(10))
-                .take(3)
-                .map(index -> new Person("first " + index, "last " + index));
+        return Flux.interval(Duration.ofSeconds(10)) // Create a Flux of Long numbers every 10 seconds
+                .take(3) // Take 3 items
+                .map(index -> new Person("first " + index, "last " + index)); // Map each item to a person instance
     }
 }
