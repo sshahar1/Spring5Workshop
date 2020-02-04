@@ -39,6 +39,7 @@ public class ControllerTest {
         this.client.get()
         .exchange()
         .expectStatus()
-        .isOk();
+        .isOk()
+        .expectBodyList(Person.class).hasSize(0);
     }
 }
