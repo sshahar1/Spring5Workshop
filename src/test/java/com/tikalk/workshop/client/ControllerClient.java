@@ -37,8 +37,9 @@ public class ControllerClient {
     }
 
     private static Flux<Person> getPayload() {
-        return Flux.just(new Person("first " + random.nextInt(1000), "last " + random.nextInt(1000)))
-                .zipWith(Flux.interval(Duration.ofSeconds(10)))
-                .map(Tuple2::getT1);
+
+        return Flux.interval(Duration.ofSeconds(10))
+                .take(3)
+                .map(index -> new Person("first " + index, "last " + index));
     }
 }
